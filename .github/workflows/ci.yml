@@ -24,6 +24,12 @@ jobs:
       - name: Smoke tests
         run: bash tests/smoke.sh
 
+      - name: Source CLI smoke
+        run: |
+          bash ./explorer.sh --version
+          bash ./explorer.sh --help
+          bash ./explorer.sh --doctor
+
       - name: Offline installer smoke
         run: |
           export HOME="$RUNNER_TEMP/home"

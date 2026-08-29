@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+No unreleased changes yet.
+
+## 3.0.0 - 2026-08-29
+
 ### Added
 
 - Universal Termux + Linux runtime detection.

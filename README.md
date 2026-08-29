@@ -1,8 +1,14 @@
 # Terminal Explorer
 
+[![Release](https://img.shields.io/github/v/release/baska-pro/terminal-explorer?style=flat-square)](https://github.com/baska-pro/terminal-explorer/releases/latest)
+[![CI](https://github.com/baska-pro/terminal-explorer/actions/workflows/ci.yml/badge.svg)](https://github.com/baska-pro/terminal-explorer/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Termux%20%7C%20Linux-2ea44f?style=flat-square)](#platform)
+
+
 File manager interaktif berbasis **Bash + fzf** untuk **Termux dan Linux**.
 
-> Status: v3.0 + perubahan **Unreleased** untuk dukungan Linux universal.
+> Current release: **v3.0.0** — universal untuk Termux dan Linux.
 
 ## Platform
 
@@ -150,6 +156,17 @@ Jika bookmark lama ditemukan di:
 ```
 
 bookmark akan disalin otomatis saat config baru belum ada.
+
+
+## Release
+
+Versi stabil saat ini:
+
+```text
+v3.0.0
+```
+
+Lihat [GitHub Releases](https://github.com/baska-pro/terminal-explorer/releases/latest) untuk source archive dan asset release.
 
 ## Uninstall
 

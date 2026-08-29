@@ -1,8 +1,13 @@
 # Terminal Explorer
 
+[![Release](https://img.shields.io/github/v/release/baska-pro/terminal-explorer?style=flat-square)](https://github.com/baska-pro/terminal-explorer/releases/latest)
+[![CI](https://github.com/baska-pro/terminal-explorer/actions/workflows/ci.yml/badge.svg)](https://github.com/baska-pro/terminal-explorer/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+
+
 Interactive **Bash + fzf** file manager for **Termux and Linux**.
 
-Current source remains version **3.0** while universal Linux support is tracked under **Unreleased**.
+Current stable release: **v3.0.0**, with universal support for Termux and Linux.
 
 Supported environments include Termux, Debian/Ubuntu, Fedora/RHEL, Arch/Manjaro, openSUSE, Alpine, Void Linux, and generic Linux systems with the required commands installed.
 
