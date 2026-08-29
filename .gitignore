@@ -1,0 +1,16 @@
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+dist/
+build/
+*.tar
+*.tar.gz
+*.tgz
+*.zip
