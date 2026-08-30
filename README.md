@@ -190,4 +190,8 @@ Baca [docs/SAFETY.md](docs/SAFETY.md).
 
 ## License
 
-MIT
+BASKA-PRO PERSONAL USE LICENSE
+Version 1.0
+
+Copyright (c) 2026 Lathif Baska
+All Rights Reserved.
