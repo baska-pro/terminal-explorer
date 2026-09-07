@@ -1,3 +1,9 @@
+<!-- repo-banner:start -->
+<p align="center">
+  <img src="./assets/banner.png" alt="Terminal Explorer Banner" width="100%">
+</p>
+<!-- repo-banner:end -->
+
 # Terminal Explorer
 
 [![Release](https://img.shields.io/github/v/release/baska-pro/terminal-explorer?style=flat-square)](https://github.com/baska-pro/terminal-explorer/releases/latest)
