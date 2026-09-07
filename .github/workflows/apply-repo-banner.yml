@@ -1,0 +1,76 @@
+name: Apply Repository Banner
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/repo-banner.payload.b64"
+
+permissions:
+  contents: write
+
+jobs:
+  apply-banner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Decode banner and update README files
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+          import os
+          import re
+
+          repo = os.environ.get("GITHUB_REPOSITORY", "repo/repository").split("/")[-1]
+          title = " ".join(part.capitalize() for part in repo.split("-"))
+          payload = Path(".github/repo-banner.payload.b64")
+          data = "".join(payload.read_text(encoding="utf-8").split())
+
+          assets = Path("assets")
+          assets.mkdir(parents=True, exist_ok=True)
+          (assets / "banner.webp").write_bytes(base64.b64decode(data))
+
+          block = (
+              "<!-- repo-banner:start -->\n"
+              "<p align=\"center\">\n"
+              f"  <img src=\"./assets/banner.webp\" alt=\"{title} banner\" width=\"100%\">\n"
+              "</p>\n"
+              "<!-- repo-banner:end -->\n\n"
+          )
+          pattern = re.compile(r"<!-- repo-banner:start -->.*?<!-- repo-banner:end -->\\s*", re.S)
+
+          readmes = [Path("README.md"), Path("README.id.md"), Path("README.en.md")]
+          found = False
+          for readme in readmes:
+              if not readme.exists():
+                  continue
+              found = True
+              text = readme.read_text(encoding="utf-8")
+              text = pattern.sub("", text, count=1).lstrip("\ufeff\r\n")
+              readme.write_text(block + text, encoding="utf-8")
+
+          if not found:
+              Path("README.md").write_text(
+                  block + f"# {title}\n\nRepository **{repo}** by [baska-pro](https://github.com/baska-pro).\n",
+                  encoding="utf-8",
+              )
+
+          payload.unlink(missing_ok=True)
+          PY
+
+      - name: Commit generated banner and README update
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "docs: add repository banner"
+          git push
