@@ -4,6 +4,17 @@
 
 No unreleased changes yet.
 
+## 3.0.2 - 2026-11-04
+
+### Added
+- Optional `baska-explorer --setup` to detect and install missing OS packages after explicit confirmation.
+- `baska-explorer --setup --yes` for deliberate noninteractive setup.
+
+### Changed
+- Clarified that `pip install baska-explorer` installs the latest PyPI release without a version pin.
+- Improved missing-dependency guidance for PyPI users.
+- Kept shell scripts with Unix line endings in Windows checkouts so WSL and Linux can run them directly.
+
 ## 3.0.1 - 2026-11-04 (PyPI packaging candidate)
 
 ### Added

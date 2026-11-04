@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # ╔══════════════════════════════════════════════════════════╗
-# ║           TERMINAL EXPLORER ULTIMATE v3.0.1                ║
+# ║           TERMINAL EXPLORER ULTIMATE v3.0.2                ║
 # ║     File manager interaktif berbasis fzf — Termux/Linux       ║
 # ╚══════════════════════════════════════════════════════════╝
 
-VERSION="3.0.1"
+VERSION="3.0.2"
 APP_NAME="Terminal Explorer Ultimate"
 REPO="baska-pro/terminal-explorer"
 
@@ -216,7 +216,8 @@ check_dependencies() {
 
     msg_err "Dependency belum tersedia: ${missing[*]}"
     dependency_hint
-    echo "   Atau jalankan installer repo: ./install.sh"
+    echo "   Jika memakai PyPI: baska-explorer --setup"
+    echo "   Jika memakai clone repo: ./install.sh"
     return 1
 }
 

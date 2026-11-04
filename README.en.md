@@ -12,16 +12,17 @@
 
 Interactive **Bash + fzf** file manager for **Termux and Linux**.
 
-Current stable release: **v3.0.1**, with universal support for Termux and Linux.
+Current stable release: **v3.0.2**, with universal support for Termux and Linux.
 
 Supported environments include Termux, Debian/Ubuntu, Fedora/RHEL, Arch/Manjaro, openSUSE, Alpine, Void Linux, and generic Linux systems with the required commands installed.
 
 ## Install from PyPI (Linux and Termux)
 
-The separately packaged `baska-explorer` distribution includes the original Bash script and installs the commands `baska-explorer`, `terminal-explorer`, and `texplorer`. It does not install OS packages or download executable code during setup. Install bash, fzf, tree, file, GNU tools, and bat/batcat separately.
+The `baska-explorer` distribution includes the original Bash script and installs the commands `baska-explorer`, `terminal-explorer`, and `texplorer`. An unpinned `pip install baska-explorer` installs the latest release. Pip does not change OS packages. Run `baska-explorer --setup` afterwards to install missing system packages through the detected package manager, after reviewing and confirming the displayed command. Use `--setup --yes` only when you intentionally want a noninteractive setup.
 
 ```bash
 python -m pip install baska-explorer
+baska-explorer --setup
 baska-explorer --doctor
 baska-explorer
 ```

@@ -10,6 +10,9 @@ Thumbs.db
 .idea/
 dist/
 build/
+__pycache__/
+*.pyc
+*.egg-info/
 *.tar
 *.tar.gz
 *.tgz
