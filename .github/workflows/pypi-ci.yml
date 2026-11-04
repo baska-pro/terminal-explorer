@@ -51,6 +51,6 @@ jobs:
           "$RUNNER_TEMP/wheel/bin/python" -m pip install --no-index --find-links dist baska-explorer
           "$RUNNER_TEMP/wheel/bin/python" -m pip check
           mkdir -p "$RUNNER_TEMP/sandbox-home"
-          HOME="$RUNNER_TEMP/sandbox-home" "$RUNNER_TEMP/wheel/bin/baska-explorer" --version | grep -q 'v3.0.2'
+          HOME="$RUNNER_TEMP/sandbox-home" "$RUNNER_TEMP/wheel/bin/baska-explorer" --version | grep -q 'v3.1.0'
           HOME="$RUNNER_TEMP/sandbox-home" "$RUNNER_TEMP/wheel/bin/terminal-explorer" --help | grep -q 'Usage:'
           HOME="$RUNNER_TEMP/sandbox-home" "$RUNNER_TEMP/wheel/bin/texplorer" --doctor | grep -q 'Required commands:'

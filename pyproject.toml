@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "baska-explorer"
-version = "3.0.2"
-description = "Interactive Bash and fzf file manager for Linux and Termux"
+version = "3.1.0"
+description = "Interactive file manager for Windows, Linux, Termux and macOS"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "LicenseRef-BASKA-Pro-Personal-Use-1.0"
@@ -16,6 +16,8 @@ classifiers = [
   "Development Status :: 4 - Beta",
   "Environment :: Console",
   "Operating System :: POSIX :: Linux",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: MacOS",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
   "Topic :: System :: Filesystems",

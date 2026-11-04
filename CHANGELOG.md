@@ -4,6 +4,16 @@
 
 No unreleased changes yet.
 
+## 3.1.0 - 2026-11-04
+
+### Added
+- Native Python terminal file manager for Windows and macOS with navigation, previews, search, bookmarks, file operations, and ZIP archives.
+- Windows and macOS smoke tests alongside the existing Linux/Termux Bash backend.
+
+### Safety
+- Native deletion requires a typed confirmation and protects root, home, and selected system directories.
+- ZIP extraction rejects paths that escape the destination and symlink entries.
+
 ## 3.0.2 - 2026-11-04
 
 ### Added

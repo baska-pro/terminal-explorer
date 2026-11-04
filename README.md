@@ -9,18 +9,20 @@
 [![Release](https://img.shields.io/github/v/release/baska-pro/terminal-explorer?style=flat-square)](https://github.com/baska-pro/terminal-explorer/releases/latest)
 [![CI](https://github.com/baska-pro/terminal-explorer/actions/workflows/ci.yml/badge.svg)](https://github.com/baska-pro/terminal-explorer/actions/workflows/ci.yml)
 [![License: Baska-Pro Personal Use](https://img.shields.io/badge/License-Baska--Pro%20Personal%20Use%201.0-blue.svg?style=flat-square)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Termux%20%7C%20Linux-2ea44f?style=flat-square)](#platform)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Termux%20%7C%20macOS-2ea44f?style=flat-square)](#platform)
 
 
-File manager interaktif berbasis **Bash + fzf** untuk **Termux dan Linux**.
+File manager interaktif untuk **Windows, Linux, Termux, dan macOS**. Linux/Termux menggunakan Bash + fzf; Windows/macOS menggunakan antarmuka Python native tanpa dependensi sistem tambahan.
 
-> Current release: **v3.0.2** — universal untuk Termux dan Linux.
+> Current release: **v3.1.0**.
 
 ## Platform
 
 Didukung:
 
 - Termux / Android
+- Windows 10/11 (PowerShell atau Command Prompt)
+- macOS (terminal)
 - Debian / Ubuntu
 - Fedora / RHEL
 - Arch Linux / Manjaro
@@ -31,7 +33,7 @@ Didukung:
 
 ## Fitur
 
-Fitur utama dari Termux Explorer tetap dipertahankan:
+Di Linux/WSL/Termux, antarmuka Bash menyediakan:
 
 - navigasi folder interaktif dengan `fzf`;
 - preview file/folder/symlink;
@@ -52,11 +54,28 @@ Fitur utama dari Termux Explorer tetap dipertahankan:
 - perlindungan path penting;
 - `--doctor`, `--help`, dan `--version`.
 
-## Install melalui PyPI (Termux / Linux)
+Di Windows/macOS, antarmuka Python menyediakan navigasi bernomor, preview,
+buat/edit/rename/delete file, copy/cut/paste, pencarian nama dan isi,
+bookmark, urutkan item, tampilkan file tersembunyi, dan arsip ZIP.
+Ketik `help` di dalam aplikasi untuk daftar perintah. Tampilan fzf,
+clipboard sistem, dan operasi permission khusus Unix tersedia pada backend
+Linux/Termux.
 
-Paket Python **`baska-explorer`** tersedia di PyPI. Pada instalasi baru, `pip install baska-explorer` memilih versi terbaru yang tersedia. Jika paket sudah terpasang, gunakan `pip install --upgrade baska-explorer` untuk memperbaruinya. `pip` memasang aplikasi Bash beserta launcher lokalnya, tanpa menjalankan installer GitHub, `sudo`, `apt`, atau `pkg`.
+## Install melalui PyPI
 
-Persyaratan: Python 3.10+, Bash, fzf, tree, file, findutils, coreutils, awk, grep, sed, serta bat/batcat. Paket sistem dikelola oleh package manager OS. Setelah memasang dari PyPI, jalankan `baska-explorer --setup` untuk memasang hanya paket sistem yang belum ada; perintah ini menampilkan rencana dan meminta persetujuan. `--setup --yes` tersedia untuk penggunaan noninteraktif yang disengaja.
+Paket Python **`baska-explorer`** tersedia di PyPI. Pada instalasi baru, `pip install baska-explorer` memilih versi terbaru yang tersedia. Jika paket sudah terpasang, gunakan `pip install --upgrade baska-explorer` untuk memperbaruinya. `pip` memasang antarmuka Python dan skrip Bash, tanpa menjalankan installer GitHub, `sudo`, `apt`, atau `pkg`.
+
+Persyaratan semua platform: Python 3.10+. Linux/WSL/Termux juga memerlukan Bash, fzf, tree, file, findutils, coreutils, awk, grep, sed, serta bat/batcat. Paket sistem dikelola oleh package manager OS. Setelah memasang dari PyPI di Linux/WSL/Termux, jalankan `baska-explorer --setup` untuk memasang hanya paket sistem yang belum ada; perintah ini menampilkan rencana dan meminta persetujuan. `--setup --yes` tersedia untuk penggunaan noninteraktif yang disengaja.
+
+Windows native memakai antarmuka Python dan tidak membutuhkan Bash/fzf. Jika Python Windows sudah memiliki versi lama, perbarui dengan:
+
+```powershell
+py -m pip install --upgrade baska-explorer
+baska-explorer --doctor
+baska-explorer
+```
+
+Di WSL, jalankan perintah Linux di bawah dalam terminal Ubuntu. Instalasi Python Windows dan WSL terpisah.
 
 Termux:
 
@@ -81,7 +100,7 @@ baska-explorer --doctor
 baska-explorer
 ```
 
-Perintah alternatif: `terminal-explorer` dan `texplorer`. Jika pernah memasang dengan `install.sh`, cek executable mana yang aktif melalui `command -v terminal-explorer` karena PATH bisa menunjuk instalasi lama. PowerShell/Windows native belum didukung. Jalankan aplikasi di terminal WSL Ubuntu. `pip install` di PowerShell memasang paket ke Python Windows, bukan ke WSL. Jangan gunakan `--break-system-packages` untuk melewati PEP 668.
+Perintah alternatif: `terminal-explorer` dan `texplorer`. Jika pernah memasang dengan `install.sh`, cek executable mana yang aktif melalui `command -v terminal-explorer` karena PATH bisa menunjuk instalasi lama. Jangan gunakan `--break-system-packages` untuk melewati PEP 668.
 
 ## Install cepat
 
@@ -200,7 +219,7 @@ bookmark akan disalin otomatis saat config baru belum ada.
 Versi stabil saat ini:
 
 ```text
-v3.0.2
+v3.1.0
 ```
 
 Lihat [GitHub Releases](https://github.com/baska-pro/terminal-explorer/releases/latest) untuk source archive dan asset release.
