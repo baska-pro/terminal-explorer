@@ -1,6 +1,6 @@
 <!-- repo-banner:start -->
 <p align="center">
-  <img src="./assets/banner.png" alt="Terminal Explorer Banner" width="100%">
+  <img src="https://raw.githubusercontent.com/baska-pro/terminal-explorer/main/assets/banner.png" alt="Terminal Explorer Banner" width="100%">
 </p>
 <!-- repo-banner:end -->
 
@@ -12,9 +12,21 @@
 
 Interactive **Bash + fzf** file manager for **Termux and Linux**.
 
-Current stable release: **v3.0.0**, with universal support for Termux and Linux.
+Current stable release: **v3.0.1**, with universal support for Termux and Linux.
 
 Supported environments include Termux, Debian/Ubuntu, Fedora/RHEL, Arch/Manjaro, openSUSE, Alpine, Void Linux, and generic Linux systems with the required commands installed.
+
+## Install from PyPI (Linux and Termux)
+
+The separately packaged `baska-explorer` distribution includes the original Bash script and installs the commands `baska-explorer`, `terminal-explorer`, and `texplorer`. It does not install OS packages or download executable code during setup. Install bash, fzf, tree, file, GNU tools, and bat/batcat separately.
+
+```bash
+python -m pip install baska-explorer
+baska-explorer --doctor
+baska-explorer
+```
+
+For Linux application isolation, prefer `pipx install baska-explorer`. Windows is unsupported.
 
 ## Quick install
 
