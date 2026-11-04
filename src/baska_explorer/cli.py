@@ -10,12 +10,20 @@ import shutil
 import subprocess
 import sys
 
+from . import setup
+
 
 def main(argv: list[str] | None = None) -> int:
     args = list(sys.argv[1:] if argv is None else argv)
     if not sys.platform.startswith("linux"):
         print("Terminal Explorer supports Linux and Termux only; Windows is not supported.", file=sys.stderr)
         return 2
+
+    if args and args[0] == "--setup":
+        if args[1:] not in ([], ["--yes"]):
+            print("Usage: baska-explorer --setup [--yes]", file=sys.stderr)
+            return 2
+        return setup.install_dependencies(yes=args[1:] == ["--yes"])
 
     bash = shutil.which("bash")
     if not bash:

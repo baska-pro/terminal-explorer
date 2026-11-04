@@ -7,7 +7,7 @@ from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from baska_explorer import __version__, cli
+from baska_explorer import __version__, cli, setup
 
 
 class PackagingTests(unittest.TestCase):
@@ -38,6 +38,34 @@ class PackagingTests(unittest.TestCase):
             self.assertEqual(args[0], "/usr/bin/bash")
             self.assertEqual(Path(args[1]).name, "explorer.sh")
             self.assertEqual(args[2:], ["--help"])
+
+    def test_setup_requires_explicit_confirmation(self):
+        with mock.patch.object(setup, "_missing_packages", return_value=["fzf"]), \
+             mock.patch.object(setup, "_package_manager", return_value="apt-get"), \
+             mock.patch.object(setup.os, "geteuid", return_value=0), \
+             mock.patch("builtins.input", return_value="n"), \
+             mock.patch.object(setup.subprocess, "call") as run:
+            self.assertEqual(setup.install_dependencies(), 1)
+            run.assert_not_called()
+
+    def test_setup_installs_only_missing_packages_after_yes(self):
+        with mock.patch.object(setup, "_missing_packages", side_effect=[["fzf"], []]), \
+             mock.patch.object(setup, "_package_manager", return_value="apt-get"), \
+             mock.patch.object(setup.os, "geteuid", return_value=0), \
+             mock.patch.object(setup.subprocess, "call", return_value=0) as run:
+            self.assertEqual(setup.install_dependencies(yes=True), 0)
+            self.assertEqual(run.call_args_list, [
+                mock.call(["apt-get", "update"]),
+                mock.call(["apt-get", "install", "-y", "fzf"]),
+            ])
+
+    def test_cli_setup_does_not_launch_bash(self):
+        with mock.patch.object(cli.sys, "platform", "linux"), \
+             mock.patch.object(cli.setup, "install_dependencies", return_value=0) as install, \
+             mock.patch.object(cli.subprocess, "call") as run:
+            self.assertEqual(cli.main(["--setup"]), 0)
+            install.assert_called_once_with(yes=False)
+            run.assert_not_called()
 
 
 if __name__ == "__main__":

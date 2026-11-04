@@ -14,7 +14,7 @@
 
 File manager interaktif berbasis **Bash + fzf** untuk **Termux dan Linux**.
 
-> Current release: **v3.0.1** — universal untuk Termux dan Linux.
+> Current release: **v3.0.2** — universal untuk Termux dan Linux.
 
 ## Platform
 
@@ -54,15 +54,16 @@ Fitur utama dari Termux Explorer tetap dipertahankan:
 
 ## Install melalui PyPI (Termux / Linux)
 
-Proyek ini juga disiapkan menjadi paket Python bernama **`baska-explorer`**. `pip` memasang aplikasi Bash beserta launcher lokalnya tanpa menjalankan installer GitHub, `sudo`, `apt`, atau `pkg`. Nama paket baru dapat digunakan setelah publikasi PyPI disetujui dan berhasil.
+Paket Python **`baska-explorer`** tersedia di PyPI. Perintah `pip install baska-explorer` selalu memasang versi terbaru. `pip` memasang aplikasi Bash beserta launcher lokalnya, tanpa menjalankan installer GitHub, `sudo`, `apt`, atau `pkg`.
 
-Persyaratan: Python 3.10+, Bash, fzf, tree, file, findutils, coreutils, gawk, grep, sed, serta bat/batcat. Dependency sistem **tidak** otomatis dipasang oleh pip.
+Persyaratan: Python 3.10+, Bash, fzf, tree, file, findutils, coreutils, awk, grep, sed, serta bat/batcat. Paket sistem dikelola oleh package manager OS. Setelah memasang dari PyPI, jalankan `baska-explorer --setup` untuk memasang hanya paket sistem yang belum ada; perintah ini menampilkan rencana dan meminta persetujuan. `--setup --yes` tersedia untuk penggunaan noninteraktif yang disengaja.
 
 Termux:
 
 ```bash
-pkg install python bash fzf tree file findutils coreutils gawk grep sed bat
-python -m pip install baska-explorer
+pkg install python
+pip install baska-explorer
+baska-explorer --setup
 baska-explorer --doctor
 baska-explorer
 ```
@@ -70,8 +71,9 @@ baska-explorer
 Debian/Ubuntu:
 
 ```bash
-sudo apt install -y pipx bash fzf tree file findutils coreutils gawk grep sed bat
+sudo apt install -y pipx
 pipx install baska-explorer
+baska-explorer --setup
 baska-explorer --doctor
 baska-explorer
 ```
@@ -195,7 +197,7 @@ bookmark akan disalin otomatis saat config baru belum ada.
 Versi stabil saat ini:
 
 ```text
-v3.0.1
+v3.0.2
 ```
 
 Lihat [GitHub Releases](https://github.com/baska-pro/terminal-explorer/releases/latest) untuk source archive dan asset release.
