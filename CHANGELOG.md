@@ -4,6 +4,20 @@
 
 No unreleased changes yet.
 
+## 3.0.1 - 2026-11-04 (PyPI packaging candidate)
+
+### Added
+- Standalone PyPI distribution `baska-explorer` with a bundled copy of the Bash application.
+- Safe Python launchers for `baska-explorer`, `terminal-explorer` and `texplorer`.
+- Automated wheel and source-distribution builds, tests and release workflow.
+
+### Compatibility
+- Keep the original Bash installation method unchanged.
+- `pip` does not install OS dependencies such as Bash, fzf, tree and bat/batcat.
+- Windows remains unsupported.
+- This is a packaging candidate; it is not published to PyPI until approved.
+
+
 ## 3.0.0 - 2026-08-29
 
 ### Added
