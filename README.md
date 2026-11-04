@@ -1,6 +1,6 @@
 <!-- repo-banner:start -->
 <p align="center">
-  <img src="./assets/banner.png" alt="Terminal Explorer Banner" width="100%">
+  <img src="https://raw.githubusercontent.com/baska-pro/terminal-explorer/main/assets/banner.png" alt="Terminal Explorer Banner" width="100%">
 </p>
 <!-- repo-banner:end -->
 
@@ -14,7 +14,7 @@
 
 File manager interaktif berbasis **Bash + fzf** untuk **Termux dan Linux**.
 
-> Current release: **v3.0.0** — universal untuk Termux dan Linux.
+> Current release: **v3.0.1** — universal untuk Termux dan Linux.
 
 ## Platform
 
@@ -51,6 +51,32 @@ Fitur utama dari Termux Explorer tetap dipertahankan:
 - deteksi Git repository;
 - perlindungan path penting;
 - `--doctor`, `--help`, dan `--version`.
+
+## Install melalui PyPI (Termux / Linux)
+
+Proyek ini juga disiapkan menjadi paket Python bernama **`baska-explorer`**. `pip` memasang aplikasi Bash beserta launcher lokalnya tanpa menjalankan installer GitHub, `sudo`, `apt`, atau `pkg`. Nama paket baru dapat digunakan setelah publikasi PyPI disetujui dan berhasil.
+
+Persyaratan: Python 3.10+, Bash, fzf, tree, file, findutils, coreutils, gawk, grep, sed, serta bat/batcat. Dependency sistem **tidak** otomatis dipasang oleh pip.
+
+Termux:
+
+```bash
+pkg install python bash fzf tree file findutils coreutils gawk grep sed bat
+python -m pip install baska-explorer
+baska-explorer --doctor
+baska-explorer
+```
+
+Debian/Ubuntu:
+
+```bash
+sudo apt install -y pipx bash fzf tree file findutils coreutils gawk grep sed bat
+pipx install baska-explorer
+baska-explorer --doctor
+baska-explorer
+```
+
+Perintah alternatif: `terminal-explorer` dan `texplorer`. Jika pernah memasang dengan `install.sh`, cek executable mana yang aktif melalui `command -v terminal-explorer` karena PATH bisa menunjuk instalasi lama. Windows belum didukung.
 
 ## Install cepat
 
@@ -169,7 +195,7 @@ bookmark akan disalin otomatis saat config baru belum ada.
 Versi stabil saat ini:
 
 ```text
-v3.0.0
+v3.0.1
 ```
 
 Lihat [GitHub Releases](https://github.com/baska-pro/terminal-explorer/releases/latest) untuk source archive dan asset release.
