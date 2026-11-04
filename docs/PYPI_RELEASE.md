@@ -12,10 +12,10 @@ The wheel bundles an identical copy and offers the commands
    and environment `pypi`.
 3. Confirm GitHub Environment `pypi` requires a reviewer and allows only
    version tags. Confirm the version-tag ruleset prevents updates and deletion.
-4. Tag the approved commit as `v3.1.0`.
+4. Tag the approved commit as `v3.1.1`.
 5. Approve the environment deployment after verify/build jobs succeed.
 6. Confirm all tag workflow jobs succeed and PyPI provides a wheel/sdist.
-7. Smoke-test `pip install baska-explorer==3.1.0` from the actual PyPI
+7. Smoke-test `pip install baska-explorer==3.1.1` from the actual PyPI
    index in isolated Linux and Windows environments.
 
 An unpinned `pip install baska-explorer` installs the latest published version.

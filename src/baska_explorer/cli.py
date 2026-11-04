@@ -15,6 +15,8 @@ from . import native, setup
 
 def main(argv: list[str] | None = None) -> int:
     args = list(sys.argv[1:] if argv is None else argv)
+    if args and args[0] == "--native":
+        return native.main(args[1:])
     if not sys.platform.startswith("linux"):
         return native.main(args)
 
@@ -26,8 +28,11 @@ def main(argv: list[str] | None = None) -> int:
 
     bash = shutil.which("bash")
     if not bash:
-        print("Bash is required. Install bash with your system package manager.", file=sys.stderr)
-        return 127
+        print("Bash is unavailable; using the portable interface.", file=sys.stderr)
+        return native.main(args)
+    if (not args or not args[0].startswith("-")) and not shutil.which("fzf"):
+        print("fzf is unavailable; using the portable interface. Run baska-explorer --setup for the full Bash interface.", file=sys.stderr)
+        return native.main(args)
 
     try:
         script = resources.files("baska_explorer").joinpath("explorer.sh")

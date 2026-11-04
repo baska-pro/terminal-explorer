@@ -14,7 +14,7 @@
 
 File manager interaktif untuk **Windows, Linux, Termux, dan macOS**. Linux/Termux menggunakan Bash + fzf; Windows/macOS menggunakan antarmuka Python native tanpa dependensi sistem tambahan.
 
-> Current release: **v3.1.0**.
+> Current release: **v3.1.1**.
 
 ## Platform
 
@@ -60,6 +60,12 @@ bookmark, urutkan item, tampilkan file tersembunyi, dan arsip ZIP.
 Ketik `help` di dalam aplikasi untuk daftar perintah. Tampilan fzf,
 clipboard sistem, dan operasi permission khusus Unix tersedia pada backend
 Linux/Termux.
+
+Jika `fzf` atau Bash belum tersedia di Linux/WSL/Termux, perintah
+`baska-explorer` otomatis membuka antarmuka Python yang tetap dapat dipakai.
+Jalankan `baska-explorer --setup` untuk melengkapi paket sistem dan memakai
+tampilan Bash/fzf. Gunakan `baska-explorer --native` untuk memilih
+antarmuka Python secara manual.
 
 ## Install melalui PyPI
 
@@ -219,7 +225,7 @@ bookmark akan disalin otomatis saat config baru belum ada.
 Versi stabil saat ini:
 
 ```text
-v3.1.0
+v3.1.1
 ```
 
 Lihat [GitHub Releases](https://github.com/baska-pro/terminal-explorer/releases/latest) untuk source archive dan asset release.

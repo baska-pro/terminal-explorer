@@ -12,7 +12,7 @@
 
 Interactive file manager for **Windows, Linux, Termux, and macOS**. Linux/Termux use the Bash + fzf interface; Windows/macOS use a native Python terminal interface.
 
-Current stable release: **v3.1.0**.
+Current stable release: **v3.1.1**.
 
 Supported environments include Windows 10/11, macOS, Termux, Debian/Ubuntu, Fedora/RHEL, Arch/Manjaro, openSUSE, Alpine, Void Linux, and generic Linux systems with the required commands installed.
 
@@ -44,6 +44,8 @@ baska-explorer
 ```
 
 Windows Python and WSL Python are separate installations. The native interface uses numbered commands for navigation, preview, search, bookmarks, file operations, and ZIP archives. Type `help` within the app for commands. The Linux/Termux interface retains its fzf layout, system clipboard, and Unix permission operations.
+
+If Bash or fzf is unavailable on Linux, WSL, or Termux, `baska-explorer` opens the portable Python interface automatically. Run `baska-explorer --setup` to install missing system tools for the full Bash/fzf interface. Use `baska-explorer --native` to choose the portable interface explicitly.
 
 ## Quick install
 

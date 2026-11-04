@@ -30,9 +30,26 @@ class PackagingTests(unittest.TestCase):
             native_main.assert_called_once_with(["--version"])
             run.assert_not_called()
 
-    def test_missing_bash_fails_cleanly(self):
-        with mock.patch.object(cli.sys, "platform", "linux"), mock.patch.object(cli.shutil, "which", return_value=None):
-            self.assertEqual(cli.main(["--doctor"]), 127)
+    def test_missing_bash_uses_portable_interface(self):
+        with mock.patch.object(cli.sys, "platform", "linux"), \
+             mock.patch.object(cli.shutil, "which", return_value=None), \
+             mock.patch.object(cli.native, "main", return_value=0) as portable:
+            self.assertEqual(cli.main([]), 0)
+            portable.assert_called_once_with([])
+
+    def test_missing_fzf_uses_portable_interface(self):
+        def available(command):
+            return "/usr/bin/bash" if command == "bash" else None
+        with mock.patch.object(cli.sys, "platform", "linux"), \
+             mock.patch.object(cli.shutil, "which", side_effect=available), \
+             mock.patch.object(cli.native, "main", return_value=0) as portable:
+            self.assertEqual(cli.main(["/tmp"]), 0)
+            portable.assert_called_once_with(["/tmp"])
+
+    def test_explicit_native_mode(self):
+        with mock.patch.object(cli.native, "main", return_value=0) as portable:
+            self.assertEqual(cli.main(["--native", "--help"]), 0)
+            portable.assert_called_once_with(["--help"])
 
     def test_launch_forwards_arguments_without_network(self):
         with mock.patch.object(cli.sys, "platform", "linux"), mock.patch.object(cli.shutil, "which", return_value="/usr/bin/bash"), mock.patch.object(cli.subprocess, "call", return_value=17) as run:
