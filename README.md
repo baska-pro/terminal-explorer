@@ -54,7 +54,7 @@ Fitur utama dari Termux Explorer tetap dipertahankan:
 
 ## Install melalui PyPI (Termux / Linux)
 
-Paket Python **`baska-explorer`** tersedia di PyPI. Perintah `pip install baska-explorer` selalu memasang versi terbaru. `pip` memasang aplikasi Bash beserta launcher lokalnya, tanpa menjalankan installer GitHub, `sudo`, `apt`, atau `pkg`.
+Paket Python **`baska-explorer`** tersedia di PyPI. Pada instalasi baru, `pip install baska-explorer` memilih versi terbaru yang tersedia. Jika paket sudah terpasang, gunakan `pip install --upgrade baska-explorer` untuk memperbaruinya. `pip` memasang aplikasi Bash beserta launcher lokalnya, tanpa menjalankan installer GitHub, `sudo`, `apt`, atau `pkg`.
 
 Persyaratan: Python 3.10+, Bash, fzf, tree, file, findutils, coreutils, awk, grep, sed, serta bat/batcat. Paket sistem dikelola oleh package manager OS. Setelah memasang dari PyPI, jalankan `baska-explorer --setup` untuk memasang hanya paket sistem yang belum ada; perintah ini menampilkan rencana dan meminta persetujuan. `--setup --yes` tersedia untuk penggunaan noninteraktif yang disengaja.
 
@@ -68,17 +68,20 @@ baska-explorer --doctor
 baska-explorer
 ```
 
-Debian/Ubuntu:
+Debian/Ubuntu/WSL dengan Python sistem yang dikelola OS (PEP 668):
 
 ```bash
+sudo apt update
 sudo apt install -y pipx
+pipx ensurepath
+# Buka ulang terminal jika baska-explorer belum ditemukan di PATH.
 pipx install baska-explorer
 baska-explorer --setup
 baska-explorer --doctor
 baska-explorer
 ```
 
-Perintah alternatif: `terminal-explorer` dan `texplorer`. Jika pernah memasang dengan `install.sh`, cek executable mana yang aktif melalui `command -v terminal-explorer` karena PATH bisa menunjuk instalasi lama. Windows belum didukung.
+Perintah alternatif: `terminal-explorer` dan `texplorer`. Jika pernah memasang dengan `install.sh`, cek executable mana yang aktif melalui `command -v terminal-explorer` karena PATH bisa menunjuk instalasi lama. PowerShell/Windows native belum didukung. Jalankan aplikasi di terminal WSL Ubuntu. `pip install` di PowerShell memasang paket ke Python Windows, bukan ke WSL. Jangan gunakan `--break-system-packages` untuk melewati PEP 668.
 
 ## Install cepat
 
