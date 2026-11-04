@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # ╔══════════════════════════════════════════════════════════╗
-# ║           TERMINAL EXPLORER ULTIMATE v3.0.0                ║
+# ║           TERMINAL EXPLORER ULTIMATE v3.0.1                ║
 # ║     File manager interaktif berbasis fzf — Termux/Linux       ║
 # ╚══════════════════════════════════════════════════════════╝
 
-VERSION="3.0.0"
+VERSION="3.0.1"
 APP_NAME="Terminal Explorer Ultimate"
 REPO="baska-pro/terminal-explorer"
 

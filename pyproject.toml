@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=80", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "baska-explorer"
+version = "3.0.1"
+description = "Interactive Bash and fzf file manager for Linux and Termux"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "LicenseRef-BASKA-Pro-Personal-Use-1.0"
+license-files = ["LICENSE"]
+authors = [{name = "Lathif Baska"}]
+keywords = ["terminal", "file-manager", "bash", "fzf", "linux", "termux", "explorer"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: System :: Filesystems",
+  "Topic :: Utilities"
+]
+
+[project.urls]
+Homepage = "https://github.com/baska-pro/terminal-explorer"
+Repository = "https://github.com/baska-pro/terminal-explorer"
+Issues = "https://github.com/baska-pro/terminal-explorer/issues"
+
+[project.scripts]
+baska-explorer = "baska_explorer.cli:main"
+terminal-explorer = "baska_explorer.cli:main"
+texplorer = "baska_explorer.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["baska_explorer"]
+
+[tool.setuptools.package-data]
+baska_explorer = ["explorer.sh"]

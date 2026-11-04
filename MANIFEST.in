@@ -1,0 +1,2 @@
+include README.md README.en.md CHANGELOG.md VERSION LICENSE explorer.sh
+recursive-include src/baska_explorer *.sh
