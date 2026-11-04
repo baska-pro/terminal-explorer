@@ -4,6 +4,13 @@
 
 No unreleased changes yet.
 
+## 3.1.1 - 2026-11-04
+
+### Fixed
+- Linux, WSL, and Termux launch the portable Python interface automatically when Bash or fzf is unavailable.
+- The full Bash/fzf interface remains available after installing system tools with `baska-explorer --setup`.
+- Add `--native` to select the portable interface explicitly.
+
 ## 3.1.0 - 2026-11-04
 
 ### Added
