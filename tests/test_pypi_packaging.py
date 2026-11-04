@@ -12,19 +12,22 @@ from baska_explorer import __version__, cli, setup
 
 class PackagingTests(unittest.TestCase):
     def test_version_metadata(self):
-        version = (ROOT / "VERSION").read_text().strip()
+        version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
         self.assertEqual(version, __version__)
-        self.assertIn('version = "' + version + '"', (ROOT / "pyproject.toml").read_text())
-        self.assertIn('VERSION="' + version + '"', (ROOT / "explorer.sh").read_text())
+        self.assertIn('version = "' + version + '"', (ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+        self.assertIn('VERSION="' + version + '"', (ROOT / "explorer.sh").read_text(encoding="utf-8"))
 
     def test_embedded_shell_matches_source(self):
         source = (ROOT / "explorer.sh").read_bytes()
         bundled = (ROOT / "src/baska_explorer/explorer.sh").read_bytes()
         self.assertEqual(hashlib.sha256(source).digest(), hashlib.sha256(bundled).digest())
 
-    def test_non_linux_rejected_without_execution(self):
-        with mock.patch.object(cli.sys, "platform", "win32"), mock.patch.object(cli.subprocess, "call") as run:
-            self.assertEqual(cli.main(["--version"]), 2)
+    def test_non_linux_uses_native_backend(self):
+        with mock.patch.object(cli.sys, "platform", "win32"), \
+             mock.patch.object(cli.native, "main", return_value=0) as native_main, \
+             mock.patch.object(cli.subprocess, "call") as run:
+            self.assertEqual(cli.main(["--version"]), 0)
+            native_main.assert_called_once_with(["--version"])
             run.assert_not_called()
 
     def test_missing_bash_fails_cleanly(self):
@@ -42,7 +45,7 @@ class PackagingTests(unittest.TestCase):
     def test_setup_requires_explicit_confirmation(self):
         with mock.patch.object(setup, "_missing_packages", return_value=["fzf"]), \
              mock.patch.object(setup, "_package_manager", return_value="apt-get"), \
-             mock.patch.object(setup.os, "geteuid", return_value=0), \
+             mock.patch.object(setup.os, "geteuid", return_value=0, create=True), \
              mock.patch("builtins.input", return_value="n"), \
              mock.patch.object(setup.subprocess, "call") as run:
             self.assertEqual(setup.install_dependencies(), 1)
@@ -51,7 +54,7 @@ class PackagingTests(unittest.TestCase):
     def test_setup_installs_only_missing_packages_after_yes(self):
         with mock.patch.object(setup, "_missing_packages", side_effect=[["fzf"], []]), \
              mock.patch.object(setup, "_package_manager", return_value="apt-get"), \
-             mock.patch.object(setup.os, "geteuid", return_value=0), \
+             mock.patch.object(setup.os, "geteuid", return_value=0, create=True), \
              mock.patch.object(setup.subprocess, "call", return_value=0) as run:
             self.assertEqual(setup.install_dependencies(yes=True), 0)
             self.assertEqual(run.call_args_list, [
