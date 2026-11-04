@@ -18,16 +18,22 @@ Supported environments include Termux, Debian/Ubuntu, Fedora/RHEL, Arch/Manjaro,
 
 ## Install from PyPI (Linux and Termux)
 
-The `baska-explorer` distribution includes the original Bash script and installs the commands `baska-explorer`, `terminal-explorer`, and `texplorer`. An unpinned `pip install baska-explorer` installs the latest release. Pip does not change OS packages. Run `baska-explorer --setup` afterwards to install missing system packages through the detected package manager, after reviewing and confirming the displayed command. Use `--setup --yes` only when you intentionally want a noninteractive setup.
+The `baska-explorer` distribution includes the original Bash script and installs the commands `baska-explorer`, `terminal-explorer`, and `texplorer`. On a fresh install, unpinned `pip install baska-explorer` selects the latest available release. If already installed, use `pip install --upgrade baska-explorer`. Pip does not change OS packages. Run `baska-explorer --setup` afterwards to install missing system packages through the detected package manager, after reviewing and confirming the displayed command. Use `--setup --yes` only when you intentionally want a noninteractive setup.
+
+On Debian, Ubuntu, and WSL with an externally managed system Python (PEP 668), use `pipx`:
 
 ```bash
-python -m pip install baska-explorer
+sudo apt update
+sudo apt install -y pipx
+pipx ensurepath
+# Open a new terminal if the command is not yet on PATH.
+pipx install baska-explorer
 baska-explorer --setup
 baska-explorer --doctor
 baska-explorer
 ```
 
-For Linux application isolation, prefer `pipx install baska-explorer`. Windows is unsupported.
+In Termux or an activated Python virtual environment, `pip install baska-explorer` is available. Native Windows PowerShell is unsupported; run the application inside WSL. Do not use `--break-system-packages` to bypass PEP 668.
 
 ## Quick install
 
