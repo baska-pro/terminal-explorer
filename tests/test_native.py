@@ -57,6 +57,20 @@ class NativeTests(unittest.TestCase):
             self.assertFalse((root / "outside.txt").exists())
             self.assertFalse((root / "bad").exists())
 
+    def test_zip_roundtrip_for_file_and_directory(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            file = root / "note.txt"
+            file.write_text("hello", encoding="utf-8")
+            extracted_file = native.extract_zip(native.make_zip(file))
+            self.assertEqual((extracted_file / "note.txt").read_text(encoding="utf-8"), "hello")
+
+            folder = root / "docs"
+            folder.mkdir()
+            (folder / "guide.txt").write_text("guide", encoding="utf-8")
+            extracted_folder = native.extract_zip(native.make_zip(folder))
+            self.assertEqual((extracted_folder / "guide.txt").read_text(encoding="utf-8"), "guide")
+
     def test_native_cli_quits_without_file_changes(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

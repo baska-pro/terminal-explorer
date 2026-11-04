@@ -133,14 +133,14 @@ def make_zip(source: Path) -> Path:
         for path in paths:
             if path.is_symlink() or not path.is_file():
                 continue
-            archive.write(path, path.relative_to(source.parent))
+            archive.write(path, path.relative_to(source) if source.is_dir() else source.name)
     return output
 
 
 def extract_zip(source: Path) -> Path:
     if not zipfile.is_zipfile(source):
         raise ValueError("Select a ZIP archive")
-    output = source.with_suffix("")
+    output = source.with_name(source.stem + "-extracted")
     if output.exists():
         raise FileExistsError(f"Already exists: {output}")
     with zipfile.ZipFile(source) as archive:
